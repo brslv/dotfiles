@@ -7,6 +7,10 @@
 " zz 							- Bring the line the cursor is in the middle of the screen 
 " Ctrl-w-Shift-\					- Expand the split
 " Ctrl-w-= 						- Equal size splits
+" Ctrl-]						- Go to the method
+" definition
+" Ctrl-^						- Go back from the
+" method definition
 " 
 " -------------------------------
 " -------------------------------
