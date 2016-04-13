@@ -54,15 +54,18 @@ colorscheme tayra	 				" Set the colorscheme
 
 "---------------- Split Management -----------------"
 
-nmap <C-J> <C-W><C-J>					" Go to the split below
-nmap <C-K> <C-W><C-K>					" Go to the split above
-nmap <C-H> <C-W><C-H>					" Go to the split on the left
-nmap <C-L> <C-W><C-L>					" Go to the split on the right
+nmap <Leader>jj <C-W><C-J><cr>				" Go to the split below (Ctrl-Shift-j)
+nmap <Leader>kk <C-W><C-K><cr>				" Go to the split above (Ctrl-Shift-k)
+nmap <Leader>hh <C-W><C-H><cr>				" Go to the split on the left (Ctrl-Shift-h)
+nmap <Leader>ll <C-W><C-L><cr>				" Go to the split on the right (Ctrl-Shift-l)
 
 "---------------- Tabs Management ------------------"
 
 " @TODO: map :tabn
 " @TODO: map :tabp
+nmap <C-N> :tabnew<cr>
+nmap <C-L> :tabn<cr>					" Go to the next tab
+nmap <C-H> :tabp<cr>					" Go to the prev tab
 
 "-------------------- Searching --------------------"
 
