@@ -1,10 +1,12 @@
 " Some usefull hints.
 " ===================
-" nmap 							- maps a key for normal mode
-" imap 							- maps a key for insert mode
-" map 							- maps a key for each mode
+" nmap 							- Maps a key for normal mode
+" imap 							- Maps a key for insert mode
+" map 							- Maps a key for each mode
 " <cr> 							- `hit enter, bro`
-" zz 							- bring the line the cursor is in the middle of the screen 
+" zz 							- Bring the line the cursor is in the middle of the screen 
+" Ctrl-w-Shift-\					- Expand the split
+" Ctrl-w-= 						- Equal size splits
 " 
 " -------------------------------
 " -------------------------------
@@ -49,6 +51,18 @@ nmap <Leader><space> :nohlsearch<cr>			" After a search, remove the highlighting
 set t_CO=256  						" Enforce 256 colors for terminal vim
 syntax enable 						" Enable syntax highlighting
 colorscheme tayra	 				" Set the colorscheme
+
+"---------------- Split Management -----------------"
+
+nmap <C-J> <C-W><C-J>					" Go to the split below
+nmap <C-K> <C-W><C-K>					" Go to the split above
+nmap <C-H> <C-W><C-H>					" Go to the split on the left
+nmap <C-L> <C-W><C-L>					" Go to the split on the right
+
+"---------------- Tabs Management ------------------"
+
+" @TODO: map :tabn
+" @TODO: map :tabp
 
 "-------------------- Searching --------------------"
 
