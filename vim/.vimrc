@@ -24,6 +24,8 @@
 
 set nocompatible					" We want the latest vim settings/options
 set number						" Enable line numbers
+set swapfile						" Enable swap files
+set dir=~/tmp						" Save swap files in ~/tmp folder
 
 so ~/.vim/plugins.vim					" All the Vundle stuff is in there
 
@@ -54,8 +56,11 @@ nmap <Leader>s 4k					" Go four lines up
 "--------------------- Colors ---------------------"
 
 set t_CO=256  						" Enforce 256 colors for terminal vim
+set background=dark					" Background dark
 syntax enable 						" Enable syntax highlighting
-colorscheme tayra	 				" Set the colorscheme
+" colorscheme tayra	 				" Set the colorscheme
+" colorscheme lanox
+colorscheme hybrid
 
 "---------------- Split Management -----------------"
 
