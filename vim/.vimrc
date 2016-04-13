@@ -25,7 +25,7 @@
 set nocompatible					" We want the latest vim settings/options
 set number						" Enable line numbers
 set swapfile						" Enable swap files
-set dir=~/tmp						" Save swap files in ~/tmp folder
+set dir=~/tmp
 
 so ~/.vim/plugins.vim					" All the Vundle stuff is in there
 
@@ -52,6 +52,11 @@ nmap <Leader><space> :nohlsearch<cr>			" After a search, remove the highlighting
 
 nmap <Leader>a 4j					" Go four lines down
 nmap <Leader>s 4k					" Go four lines up
+
+" See methods and variables within a file
+nmap <c-R> :CtrlPBufTag<cr>
+" See the most recently used files
+nmap <c-E> :CtrlPMRUFiles<cr>
  
 "--------------------- Colors ---------------------"
 
@@ -60,14 +65,15 @@ set background=dark					" Background dark
 syntax enable 						" Enable syntax highlighting
 " colorscheme tayra	 				" Set the colorscheme
 " colorscheme lanox
-colorscheme hybrid
+" colorscheme hybrid
+colorscheme Tomorrow-Night-Eighties
 
 "---------------- Split Management -----------------"
 
-nmap <Leader>jj <C-W><C-J><cr>				" Go to the split below (Ctrl-Shift-j)
-nmap <Leader>kk <C-W><C-K><cr>				" Go to the split above (Ctrl-Shift-k)
-nmap <Leader>hh <C-W><C-H><cr>				" Go to the split on the left (Ctrl-Shift-h)
-nmap <Leader>ll <C-W><C-L><cr>				" Go to the split on the right (Ctrl-Shift-l)
+nmap sjj <C-W><C-J><cr>					" Go to the split below (Ctrl-Shift-j)
+nmap skk <C-W><C-K><cr>					" Go to the split above (Ctrl-Shift-k)
+nmap shh <C-W><C-H><cr>					" Go to the split on the left (Ctrl-Shift-h)
+nmap sll <C-W><C-L><cr>					" Go to the split on the right (Ctrl-Shift-l)
 
 "---------------- Tabs Management ------------------"
 
