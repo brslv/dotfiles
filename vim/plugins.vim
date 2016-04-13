@@ -9,6 +9,8 @@ Plugin 'VundleVim/Vundle.vim' 					" Vundle
 Plugin 'scrooloose/nerdtree' 					" NERDTree
 Plugin 'jiangmiao/auto-pairs' 					" Auto Pairs
 Plugin 'kien/ctrlp.vim'						" Ctrl-P
+Plugin 'vim-airline/vim-airline'				" Vim-airline
+Plugin 'vim-airline/vim-airline-themes'				" Vim-airline themes
 
 
 

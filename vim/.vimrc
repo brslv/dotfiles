@@ -27,6 +27,8 @@ set number						" Enable line numbers
 
 so ~/.vim/plugins.vim					" All the Vundle stuff is in there
 
+let g:airline_powerline_fonts = 1			" Powerline fonts setting (https://github.com/vim-airline/vim-airline - for more info)
+
 "--------------------- Let's ----------------------"
 
 let mapleader = ','					" The default leader is \, but `,` is much better
@@ -45,6 +47,9 @@ nmap <Leader>ep :e ~/.vim/plugins.vim<cr>		" Open the plugins file (Vundle)
 nmap <Leader>1 :NERDTreeToggle<cr>			" Open/Close the NERDTree
 
 nmap <Leader><space> :nohlsearch<cr>			" After a search, remove the highlighting
+
+nmap <Leader>a 4j					" Go four lines down
+nmap <Leader>s 4k					" Go four lines up
  
 "--------------------- Colors ---------------------"
 
