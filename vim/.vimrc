@@ -31,6 +31,14 @@ set number						" Enable line numbers
 set swapfile						" Enable swap files
 set dir=~/tmp
 
+" Tabulations and spaces
+" ----------------------
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+" ----------------------
+
 so ~/.vim/plugins.vim					" All the Vundle stuff is in there
 
 let g:airline_powerline_fonts = 1			" Powerline fonts setting (https://github.com/vim-airline/vim-airline - for more info)
@@ -72,6 +80,9 @@ syntax enable 						" Enable syntax highlighting
 " colorscheme hybrid
 colorscheme Tomorrow-Night-Eighties
 
+hi LineNr ctermbg=bg                                                    " Set the background for the line numbers the same as the editor's bg
+hi vertsplit ctermbg=bg ctermfg=bg                                      " Background for the veritical split separator
+
 "---------------- Split Management -----------------"
 
 nmap sjj <C-W><C-J><cr>					" Go to the split below (Ctrl-Shift-j)
@@ -81,8 +92,6 @@ nmap sll <C-W><C-L><cr>					" Go to the split on the right (Ctrl-Shift-l)
 
 "---------------- Tabs Management ------------------"
 
-" @TODO: map :tabn
-" @TODO: map :tabp
 nmap <C-N> :tabnew<cr>
 nmap <C-L> :tabn<cr>					" Go to the next tab
 nmap <C-H> :tabp<cr>					" Go to the prev tab
