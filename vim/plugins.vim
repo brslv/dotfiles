@@ -11,6 +11,7 @@ Plugin 'jiangmiao/auto-pairs' 					" Auto Pairs
 Plugin 'kien/ctrlp.vim'						" Ctrl-P
 Plugin 'vim-airline/vim-airline'				" Vim-airline
 Plugin 'vim-airline/vim-airline-themes'				" Vim-airline themes
+Plugin 'rking/ag.vim'                           " Ag searching
 
 
 
