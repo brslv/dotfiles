@@ -8,11 +8,12 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' 					" Vundle
 Plugin 'scrooloose/nerdtree' 					" NERDTree
 Plugin 'jiangmiao/auto-pairs' 					" Auto Pairs
-Plugin 'kien/ctrlp.vim'						" Ctrl-P
+Plugin 'kien/ctrlp.vim'						    " Ctrl-P
 Plugin 'vim-airline/vim-airline'				" Vim-airline
-Plugin 'vim-airline/vim-airline-themes'				" Vim-airline themes
+Plugin 'vim-airline/vim-airline-themes'			" Vim-airline themes
 Plugin 'rking/ag.vim'                           " Ag searching
-
+Plugin 'SirVer/ultisnips'                       " UltiSnips
+Plugin 'ervandew/supertab'                      " Supertab
 
 
 call vundle#end()            					" required
