@@ -33,6 +33,9 @@ set nocompatible
 set number
 set relativenumber
 
+" Prevents delay on Shift-O and other key-combinations
+set noesckeys
+
 " Enable swap files and change the 
 " default swap files dir
 set swapfile
@@ -40,9 +43,10 @@ set dir=~/tmp
 
 " Tabs and spaces
 filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
+set tabstop=8
 set expandtab
+set softtabstop=4
+set shiftwidth=4
 
 " All the Vundle stuff is in there
 so ~/.vim/plugins.vim
@@ -64,6 +68,17 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 " Move to the prev placeholder on Shift-tab
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" Vim-multiple-cursors
+" -
+" Find next occurance
+let g:multi_cursor_next_key='<C-d>'
+
+" PHP Documentor for vim (PDV)
+" -
+"  Template dir (used for the docblock template - requires UltiSnips)
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
 
 "-------------------- Mappings ---------------------"
 
