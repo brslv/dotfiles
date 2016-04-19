@@ -16,6 +16,7 @@ Plugin 'SirVer/ultisnips'                       " UltiSnips
 Plugin 'ervandew/supertab'                      " Supertab
 Plugin 'StanAngeloff/php.vim'                   " Updated PHP Syntax
 Plugin 'arnaud-lb/vim-php-namespace'            " PHP namespaces usings
+Plugin 'terryma/vim-multiple-cursors'           " Multiple cursors
 
 
 
