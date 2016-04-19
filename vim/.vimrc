@@ -2,6 +2,8 @@
 " ===================
 " nmap 							                    - Maps a key for normal mode
 " imap 							                    - Maps a key for insert mode
+" vmap                                              - Maps a key for visual
+" mode
 " map 							                    - Maps a key for each mode
 " <cr> 							                    - `hit enter, bro`
 " zz 							                    - Bring the line the cursor is in the middle of the screen 
