@@ -10,6 +10,8 @@
 " Ctrl-]						                    - Go to the method
 " definition
 " Ctrl-^						                    - Go back from the method definition
+" r                                                 - Replace the selected
+" symbol
 " 
 " Notes
 " =====
@@ -22,9 +24,16 @@
 
 "--------------------- General ---------------------"
 
-set nocompatible					                " We want the latest vim settings/options
-set number						                    " Enable line numbers
-set swapfile						                " Enable swap files
+" We want the latest vim settings
+set nocompatible
+
+" Enable line numbers and relative line numbers
+set number
+set relativenumber
+
+" Enable swap files and change the 
+" default swap files dir
+set swapfile
 set dir=~/tmp
 
 " Tabs and spaces
@@ -33,65 +42,129 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-so ~/.vim/plugins.vim					            " All the Vundle stuff is in there
+" All the Vundle stuff is in there
+so ~/.vim/plugins.vim
 
-let g:airline_powerline_fonts = 1			        " Powerline fonts setting
+" Powerline fonts settings
+let g:airline_powerline_fonts = 1
 
 "--------------------- Let's -----------------------"
 
-let mapleader = ','					                " The default leader is \, but `,` is much better
-let g:UltiSnipsExpandTrigger="<tab>"                " Expand on tab                                          
-let g:UltiSnipsJumpForwardTrigger="<tab>"           " Move to the next placeholder on tab                           
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"        " Move to the prev placeholder on Shift-tab
+" The default leader is \,
+" but `,` is much better
+let mapleader = ','
+
+" Ultisnips
+" -
+" Expand on tab
+let g:UltiSnipsExpandTrigger="<tab>"
+" Move to the next placeholder on tab
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+" Move to the prev placeholder on Shift-tab
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 "-------------------- Mappings ---------------------"
 
-nmap <Leader>ev :tabnew $MYVIMRC<cr>			    " Open the .vimrc file
+" Open the .vimrc file
+nmap <Leader>ev :tabnew $MYVIMRC<cr>
 
-nmap <Leader>q :q<cr>					            " Quit
-nmap <Leader>qq :q!<cr>					            " Force save and quit
-nmap <Leader>w :w<cr>					            " Save
-nmap <Leader>wq :wq<cr>					            " Save and quit
+" Quit
+nmap <Leader>q :q<cr>
 
-nmap <Leader>ep :e ~/.vim/plugins.vim<cr>		    " Open the plugins file (Vundle)
+" Force save and quit
+nmap <Leader>qq :q!<cr>
 
-nmap <Leader>1 :NERDTreeToggle<cr>			        " Open/Close the NERDTree
+" Close the current buffer
+nmap <Leader>b :bd<cr>
 
-nmap <Leader><space> :nohlsearch<cr>			    " After a search, remove the highlighting
+" Close the current buffer
+nmap <Leader>bb :bd!<cr>
 
-nmap <Leader>a 4j					                " Go four lines down
-nmap <Leader>s 4k					                " Go four lines up
+" Save
+nmap <Leader>w :w<cr>
 
-                                                    " See methods and variables within a file
+" Save and quit
+nmap <Leader>wq :wq<cr>
+
+" Open the plugins file (Vundle)
+nmap <Leader>ep :e ~/.vim/plugins.vim<cr>
+
+" Open/Close the NERDTree
+nmap <Leader>1 :NERDTreeToggle<cr>
+
+" After a search, remove the highlighting
+nmap <Leader><space> :nohlsearch<cr>
+
+" Go four lines down
+nmap <Leader>a 4j
+
+" Go fourl lines up
+nmap <Leader>s 4k
+
+" See methods and variables within a file
 nmap <c-R> :CtrlPBufTag<cr>
-                                                    " See the most recently used files
+
+" See the most recently used files
 nmap <c-E> :CtrlPMRUFiles<cr>
  
 "--------------------- Colors ----------------------"
 
-set t_CO=256  						                " Enforce 256 colors for terminal vim
-set background=dark					                " Background dark
-syntax enable 						                " Enable syntax highlighting
-" colorscheme Tomorrow-Night-Eighties	 			" Set the colorscheme
+" Enforce <t_CO> colors for terminal vim
+set t_CO=256
+
+" Background dark
+set background=dark
+
+" Enable syntax highlighting
+syntax enable
+
+" Set the colorscheme
 colorscheme Tomorrow-Night-Eighties
 
-hi LineNr ctermbg=bg                                " Set the background for the line numbers the same as the editor's bg
-hi vertsplit ctermbg=bg ctermfg=bg                  " Background for the veritical split separator
+" Set the background for the line numbers the same as the editor's bg
+hi LineNr ctermbg=bg                                
+
+" Background for the veritical split separator
+hi vertsplit ctermbg=bg ctermfg=bg                  
 
 "---------------- Split Management -----------------"
 
-nmap sjj <C-W><C-J><cr>					            " Go to the split below (Ctrl-Shift-j)
-nmap skk <C-W><C-K><cr>					            " Go to the split above (Ctrl-Shift-k)
-nmap shh <C-W><C-H><cr>					            " Go to the split on the left (Ctrl-Shift-h)
-nmap sll <C-W><C-L><cr>					            " Go to the split on the right (Ctrl-Shift-l)
+" Go to the split below (Ctrl-Shift-j)
+nmap sjj <C-W><C-J><cr>					            
+
+" Go to the split above (Ctrl-Shift-k)
+nmap skk <C-W><C-K><cr>					            
+
+" Go to the split on the left (Ctrl-Shift-h)
+nmap shh <C-W><C-H><cr>					            
+
+" Go to the split on the right (Ctrl-Shift-l)
+nmap sll <C-W><C-L><cr>					            
 
 "---------------- Tabs Management ------------------"
 
 nmap <C-N> :tabnew<cr>
-nmap <C-L> :tabn<cr>					            " Go to the next tab
-nmap <C-H> :tabp<cr>					            " Go to the prev tab
+
+" Go to the next tab
+nmap <C-L> :tabn<cr>					            
+
+" Go to the prev tab
+nmap <C-H> :tabp<cr>					            
 
 "-------------------- Searching --------------------"
 
-set hlsearch						                " Highlight all found words on search
-set incsearch						                " Incremental search (search as you type, boy)
+" Highlight all found words on search
+set hlsearch						                
+
+" Incremental search (search as you type, boy)
+set incsearch						                
+
+"------------------ Auto Commands ------------------"
+
+" Allows automatically including use statements for PHP files
+function! IPhpInsertUse()
+        call PhpInsertUse()
+            call feedkeys('a',  'n')
+        endfunction
+        autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+        autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>

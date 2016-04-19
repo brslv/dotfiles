@@ -14,6 +14,9 @@ Plugin 'vim-airline/vim-airline-themes'			" Vim-airline themes
 Plugin 'rking/ag.vim'                           " Ag searching
 Plugin 'SirVer/ultisnips'                       " UltiSnips
 Plugin 'ervandew/supertab'                      " Supertab
+Plugin 'StanAngeloff/php.vim'                   " Updated PHP Syntax
+Plugin 'arnaud-lb/vim-php-namespace'            " PHP namespaces usings
+
 
 
 call vundle#end()            					" required
