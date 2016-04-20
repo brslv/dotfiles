@@ -54,6 +54,9 @@ so ~/.vim/plugins.vim
 " Powerline fonts settings
 let g:airline_powerline_fonts = 1
 
+" Always show the status bar on the bottom
+set laststatus=2
+
 "--------------------- Let's -----------------------"
 
 " The default leader is \,
@@ -136,13 +139,14 @@ set background=dark
 syntax enable
 
 " Set the colorscheme
-colorscheme Tomorrow-Night-Eighties
+" colorscheme Tomorrow-Night-Eighties
+colorscheme pt_black
 
 " Set the background for the line numbers the same as the editor's bg
-hi LineNr ctermbg=bg                                
+" hi LineNr ctermbg=bg                                
 
 " Background for the veritical split separator
-hi vertsplit ctermbg=bg ctermfg=bg                  
+" hi vertsplit ctermbg=bg ctermfg=bg                  
 
 "---------------- Split Management -----------------"
 
