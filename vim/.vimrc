@@ -143,10 +143,16 @@ syntax enable
 colorscheme pt_black
 
 " Set the background for the line numbers the same as the editor's bg
-" hi LineNr ctermbg=bg                                
+" Usualy set to `bg`
+hi LineNr ctermbg=000000                                
 
 " Background for the veritical split separator
-" hi vertsplit ctermbg=bg ctermfg=bg                  
+" Usualy set to `bg`
+hi vertsplit ctermbg=000000 ctermfg=000000                  
+
+hi TabLineFill ctermfg=000000 ctermbg=000000
+hi TabLine ctermfg=000000 ctermbg=Yellow
+hi TabLineSel ctermfg=000000 ctermbg=000000
 
 "---------------- Split Management -----------------"
 
