@@ -140,19 +140,20 @@ syntax enable
 
 " Set the colorscheme
 " colorscheme Tomorrow-Night-Eighties
-colorscheme pt_black
+" colorscheme base
+colorscheme brogrammer
 
 " Set the background for the line numbers the same as the editor's bg
 " Usualy set to `bg`
-hi LineNr ctermbg=000000                                
+hi LineNr ctermbg=bg                                
 
 " Background for the veritical split separator
 " Usualy set to `bg`
-hi vertsplit ctermbg=000000 ctermfg=000000                  
+hi vertsplit ctermbg=bg ctermfg=bg                  
 
-hi TabLineFill ctermfg=000000 ctermbg=000000
-hi TabLine ctermfg=000000 ctermbg=Yellow
-hi TabLineSel ctermfg=000000 ctermbg=000000
+hi TabLineFill ctermfg=bg ctermbg=bg
+hi TabLine ctermfg=bg ctermbg=Yellow
+hi TabLineSel ctermfg=Yellow ctermbg=bg
 
 "---------------- Split Management -----------------"
 
