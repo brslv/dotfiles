@@ -9,6 +9,10 @@
 " zz 							                    - Bring the line the cursor is in the middle of the screen 
 " Ctrl-w-Shift-\					                - Expand the split
 " Ctrl-w-= 						                    - Equal size splits
+" 50 Ctrl w >                                       - Add margin to the right
+" of the split
+" 50 Ctrl w <                                       - Add margin to the left
+" of the split
 " Ctrl-]						                    - Go to the method
 " definition
 " Ctrl-^						                    - Go back from the method definition
@@ -126,7 +130,7 @@ nmap <c-R> :CtrlPBufTag<cr>
 
 " See the most recently used files
 nmap <c-E> :CtrlPMRUFiles<cr>
- 
+
 "--------------------- Colors ----------------------"
 
 " Enforce <t_CO> colors for terminal vim
@@ -151,8 +155,8 @@ hi LineNr ctermbg=000000
 hi vertsplit ctermbg=000000 ctermfg=000000                  
 
 hi TabLineFill ctermfg=000000 ctermbg=000000
-hi TabLine ctermfg=000000 ctermbg=Yellow
-hi TabLineSel ctermfg=000000 ctermbg=000000
+hi TabLine ctermfg=White ctermbg=DarkGray
+hi TabLineSel ctermfg=000000 ctermbg=Yellow
 
 "---------------- Split Management -----------------"
 
