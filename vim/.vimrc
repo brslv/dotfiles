@@ -26,6 +26,11 @@
 
 "--------------------- General ---------------------"
 
+" Set a keymap for insert mode. 
+" Switch between bulgarian and english
+" with Ctrl+6 while in insert mode.
+set keymap=bulgarian-phonetic
+
 " We want the latest vim settings
 set nocompatible
 
