@@ -14,6 +14,8 @@
 " Ctrl-^						                    - Go back from the method definition
 " r                                                 - Replace the selected
 " symbol
+" yg_                                               - Yank to the end of the
+" line
 " 
 " Notes
 " =====
@@ -26,10 +28,13 @@
 
 "--------------------- General ---------------------"
 
-" Set a keymap for insert mode. 
-" Switch between bulgarian and english
-" with Ctrl+6 while in insert mode.
+" keymaps
+" Enables toggling bulgarian language
+" more:
+" http://stackoverflow.com/questions/3776728/using-vim-with-the-greek-language
 set keymap=bulgarian-phonetic
+set iminsert=0
+set imsearch=0
 
 " We want the latest vim settings
 set nocompatible
@@ -62,6 +67,12 @@ let g:airline_powerline_fonts = 1
 " Always show the status bar on the bottom
 set laststatus=2
 
+" Underline the current line
+set cursorline
+
+" Set automatic autocomplete for php files
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
 "--------------------- Let's -----------------------"
 
 " The default leader is \,
@@ -89,6 +100,8 @@ let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
 
 "-------------------- Mappings ---------------------"
+" source .vimrc file
+:nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Open the .vimrc file
 nmap <Leader>ev :tabnew $MYVIMRC<cr>
@@ -131,7 +144,7 @@ nmap <c-R> :CtrlPBufTag<cr>
 
 " See the most recently used files
 nmap <c-E> :CtrlPMRUFiles<cr>
- 
+
 "--------------------- Colors ----------------------"
 
 " Enforce <t_CO> colors for terminal vim
@@ -146,7 +159,8 @@ syntax enable
 " Set the colorscheme
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme base
-colorscheme brogrammer
+" colorscheme brogrammer
+colorscheme atom-dark-256
 
 " Set the background for the line numbers the same as the editor's bg
 " Usualy set to `bg`

@@ -20,7 +20,7 @@ Plugin 'terryma/vim-multiple-cursors'           " Multiple cursors
 Plugin 'tpope/vim-surround'                     " Vim-surround
 Plugin 'tobyS/vmustache'                        " --Dependency for `PHP Documentor for vim`
 Plugin 'tobyS/pdv'                              " PHP Documentor for vim
-
+Plugin 'shawncplus/phpcomplete.vim'             " phpcomplete
 
 
 call vundle#end()            			" required
