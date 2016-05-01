@@ -21,6 +21,8 @@ Plugin 'tpope/vim-surround'                     " Vim-surround
 Plugin 'tobyS/vmustache'                        " --Dependency for `PHP Documentor for vim`
 Plugin 'tobyS/pdv'                              " PHP Documentor for vim
 Plugin 'shawncplus/phpcomplete.vim'             " phpcomplete
+Plugin 'vim-scripts/AutoComplPop'               " AutoComplPop
+" Plugin 'Valloric/YouCompleteMe'                 " YouCompleteMe
 
 
 call vundle#end()            			" required

@@ -73,6 +73,9 @@ set cursorline
 " Set automatic autocomplete for php files
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
+" Autocompletion the right way
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 "--------------------- Let's -----------------------"
 
 " The default leader is \,
@@ -82,9 +85,10 @@ let mapleader = ','
 " Ultisnips
 " -
 " Expand on tab
-let g:UltiSnipsExpandTrigger="<tab>"
+" Ctrl-Space
+let g:UltiSnipsExpandTrigger="<c-@>"
 " Move to the next placeholder on tab
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-@>"
 " Move to the prev placeholder on Shift-tab
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
@@ -140,7 +144,7 @@ nmap <Leader>a 4j
 nmap <Leader>s 4k
 
 " See methods and variables within a file
-nmap <c-R> :CtrlPBufTag<cr>
+" nmap <c-R> :CtrlPBufTag<cr>
 
 " See the most recently used files
 nmap <c-E> :CtrlPMRUFiles<cr>
