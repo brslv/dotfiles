@@ -70,6 +70,11 @@ set laststatus=2
 " Underline the current line
 set cursorline
 
+" HTML Editing
+set matchpairs+=<:>
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
+
 " Set automatic autocomplete for php files
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
@@ -149,6 +154,12 @@ nmap <Leader>s 4k
 " See the most recently used files
 nmap <c-E> :CtrlPMRUFiles<cr>
 
+" If you prefer the Omni-Completion tip window to close when a selection is
+" " made, these lines close it on movement in insert mode or when leaving
+" " insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
 "--------------------- Colors ----------------------"
 
 " Enforce <t_CO> colors for terminal vim
@@ -165,6 +176,7 @@ syntax enable
 " colorscheme base
 " colorscheme brogrammer
 colorscheme atom-dark-256
+" colorscheme welpe
 
 " Set the background for the line numbers the same as the editor's bg
 " Usualy set to `bg`
@@ -219,3 +231,10 @@ function! IPhpInsertUse()
         endfunction
         autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
         autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+
+"-------------------- Copy-Paste --------------------"
+" SYSTEM CLIPBOARD COPY & PASTE SUPPORT
+set pastetoggle=<F2> " F2 before pasting to preserve indentation
+" Copy paste to/from clipboard
+vnoremap <Leader>c "*y
+map <Leader>v :set paste<CR>o<esc>"*]p:set nopaste<cr>"
