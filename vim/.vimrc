@@ -1,30 +1,3 @@
-" Some usefull hints.
-" ===================
-" nmap 							                    - Maps a key for normal mode
-" imap 							                    - Maps a key for insert mode
-" vmap                                              - Maps a key for visual
-" mode
-" map 							                    - Maps a key for each mode
-" <cr> 							                    - `hit enter, bro`
-" zz 							                    - Bring the line the cursor is in the middle of the screen 
-" Ctrl-w-Shift-\					                - Expand the split
-" Ctrl-w-= 						                    - Equal size splits
-" Ctrl-]						                    - Go to the method
-" definition
-" Ctrl-^						                    - Go back from the method definition
-" r                                                 - Replace the selected
-" symbol
-" yg_                                               - Yank to the end of the
-" line
-" 
-" Notes
-" =====
-" To enable 256 colors
-" 1. Add this to the bashrc file
-" 	TERM=xterm-256color
-" 2. Add this to the .vimrc file
-" 	set t_CO=256
-" 3. Done
 
 "--------------------- General ---------------------"
 
@@ -58,6 +31,10 @@ set expandtab
 set softtabstop=4
 set shiftwidth=4
 
+" Indentation
+set smartindent
+set autoindent
+
 " All the Vundle stuff is in there
 so ~/.vim/plugins.vim
 
@@ -72,6 +49,7 @@ set cursorline
 
 " HTML Editing
 set matchpairs+=<:>
+
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
@@ -80,6 +58,22 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Autocompletion the right way
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+"Better line wrapping 
+set wrap
+set textwidth=79
+
+" Show matching brackets
+set showmatch
+
+" Enable mouse mouse usage
+set mouse=a
+
+" Spell checking on
+set spell
+
+" Autofold
+set foldenable
 
 "--------------------- Let's -----------------------"
 
@@ -148,6 +142,9 @@ nmap <Leader>a 4j
 " Go fourl lines up
 nmap <Leader>s 4k
 
+" Update ctags
+nmap <Leader>t :!ctags -R<cr>
+
 " See methods and variables within a file
 " nmap <c-R> :CtrlPBufTag<cr>
 
@@ -176,7 +173,6 @@ syntax enable
 " colorscheme base
 " colorscheme brogrammer
 colorscheme atom-dark-256
-" colorscheme welpe
 
 " Set the background for the line numbers the same as the editor's bg
 " Usualy set to `bg`
@@ -187,8 +183,8 @@ hi LineNr ctermbg=bg
 hi vertsplit ctermbg=bg ctermfg=bg                  
 
 hi TabLineFill ctermfg=bg ctermbg=bg
-hi TabLine ctermfg=bg ctermbg=Yellow
-hi TabLineSel ctermfg=Yellow ctermbg=bg
+hi TabLine ctermfg=Yellow ctermbg=bg
+hi TabLineSel ctermfg=bg ctermbg=Yellow
 
 "---------------- Split Management -----------------"
 
@@ -222,6 +218,14 @@ set hlsearch
 " Incremental search (search as you type, boy)
 set incsearch						                
 
+" case insensitive search
+set ignorecase
+set smartcase
+
+" Map <Leader>ff to display all lines with keyword under cursor
+" and ask which one to jump to
+nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>"]"]
+
 "------------------ Auto Commands ------------------"
 
 " Allows automatically including use statements for PHP files
@@ -238,3 +242,36 @@ set pastetoggle=<F2> " F2 before pasting to preserve indentation
 " Copy paste to/from clipboard
 vnoremap <Leader>c "*y
 map <Leader>v :set paste<CR>o<esc>"*]p:set nopaste<cr>"
+
+" =======
+" PLUGINS
+" =======
+
+"
+"
+
+" Some usefull hints.
+" ===================
+" nmap - Maps a key for normal mode
+" imap - Maps a key for insert mode
+" vmap - Maps a key for visual mode
+" map - Maps a key for each mode
+" <cr> - `hit enter, bro`
+" zz - Bring the line the cursor is in the middle of the screen 
+" Ctrl-w-Shift-\ - Expand the split
+" Ctrl-w-= - Equal size splits
+" Ctrl-] - Go to the method definition
+" Ctrl-^ - Go back from the method definition
+" r - Replace the selected
+" yg_ - Yank to the end of the line
+" gcc - Toggle comment a line
+" gc - Toggle comment on a region
+" 
+" Notes
+" =====
+" To enable 256 colors
+" 1. Add this to the bashrc file
+" 	TERM=xterm-256color
+" 2. Add this to the .vimrc file
+" 	set t_CO=256
+" 3. Done
