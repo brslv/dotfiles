@@ -70,7 +70,7 @@ set showmatch
 set mouse=a
 
 " Spell checking on
-set spell
+" set spell
 
 " Autofold
 set foldenable
@@ -159,6 +159,9 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 "--------------------- Colors ----------------------"
 
+" Solarized
+let g:solarized_termtrans = 1
+
 " Enforce <t_CO> colors for terminal vim
 set t_CO=256
 
@@ -172,7 +175,8 @@ syntax enable
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme base
 " colorscheme brogrammer
-colorscheme atom-dark-256
+" colorscheme atom-dark-256
+colorscheme wombat256mod
 
 " Set the background for the line numbers the same as the editor's bg
 " Usualy set to `bg`
