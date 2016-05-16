@@ -22,6 +22,9 @@ Plugin 'vim-scripts/AutoComplPop'               " AutoComplPop
 Plugin 'honza/vim-snippets'                     " Some handy snippets
 Plugin 'tomtom/tcomment_vim'                    " TComment
 Plugin 'scrooloose/syntastic'                   " Syntastic
+Plugin 'airblade/vim-gitgutter'                 " Gitgutter
+Plugin 'tommcdo/vim-exchange'                   " Vim-exchange for words swapping
+Plugin 'majutsushi/tagbar'                      " Tagbar
 
 
 

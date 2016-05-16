@@ -1,4 +1,3 @@
-
 "--------------------- General ---------------------"
 
 " keymaps
@@ -159,9 +158,6 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 "--------------------- Colors ----------------------"
 
-" Solarized
-let g:solarized_termtrans = 1
-
 " Enforce <t_CO> colors for terminal vim
 set t_CO=256
 
@@ -250,9 +246,8 @@ map <Leader>v :set paste<CR>o<esc>"*]p:set nopaste<cr>"
 " =======
 " PLUGINS
 " =======
-
-"
-"
+"-------------------- Tagbar --------------------"
+nmap <Leader>2 :TagbarToggle<CR>
 
 " Some usefull hints.
 " ===================
