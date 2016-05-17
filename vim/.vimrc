@@ -58,10 +58,6 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " Autocompletion the right way
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-"Better line wrapping 
-set wrap
-set textwidth=79
-
 " Show matching brackets
 set showmatch
 
