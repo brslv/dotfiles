@@ -1,0 +1,79 @@
+# ------------------------
+# Random/Generic php stuff
+# ------------------------
+snippet php "Openning php tag."
+<?php
+
+${1:Make something remarkable}
+endsnippet
+
+# -------
+# Methods
+# -------
+snippet pub "Public method."
+public function (${arguments}) {
+    ${2}
+}
+endsnippet
+
+snippet pubs "Public static method."
+public static function (${arguments}) {
+    ${2}
+}
+endsnippet
+
+snippet pri "Private method."
+private function (${arguments}) {
+    ${2}
+}
+endsnippet
+
+snippet pris "Private static method."
+private function (${arguments}) {
+    ${2}
+}
+endsnippet
+
+snippet pro "Protected method."
+protected function (${arguments}) {
+    ${2}
+}
+endsnippet
+
+snippet pros "Protected static method."
+protected static function (${arguments}) {
+    ${2}
+}
+endsnippet
+
+# ---
+# OOP
+# ---
+
+snippet cl "Make a new class."
+class ${1:ClassName} 
+{
+    ${2}
+}
+endsnippet
+
+snippet in "Make a new interface."
+interface ${1:InterfaceName}
+{
+
+}
+endsnippet
+
+snippet acl "Make a new abstract class."
+abstract class ${1:ClassName}
+{
+    ${2}
+}
+endsnippet
+
+snippet ctor "Constructor."
+public function __construct(${1:artuments})
+{
+    ${2}
+}
+endsnippet
