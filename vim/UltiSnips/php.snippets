@@ -1,69 +1,79 @@
-snippet php "PHP open tag"
+# ------------------------
+# Random/Generic php stuff
+# ------------------------
+snippet php "Openning php tag."
 <?php
+
+${1:Make something remarkable}
 endsnippet
 
-snippet vd "Basic var dump"
-var_dump($1);
-endsnippet
-
-snippet pr "Formatted print_r"
-echo '<pre>' . print_r($1) . '</pre>';
-endsnippet
-
-snippet get "Getter method"
-public function get${1/\w+\s*/\u$0/}()
-{
-    return $this->${1};
+# -------
+# Methods
+# -------
+snippet pub "Public method."
+public function (${arguments}) {
+    ${2}
 }
 endsnippet
 
-snippet set "Setter method"
-public function set${1/\w+\s*/\u$0/}($$1)
-{
-    $this->$1 = $$1;
-    
-    return $this;
+snippet pubs "Public static method."
+public static function (${arguments}) {
+    ${2}
 }
 endsnippet
 
-snippet gs "Getter and setter methods"
-public function get${1/\w+\s*/\u$0/}()
-{
-    return $this->${1};
-}
-
-public function set${1/\w+\s*/\u$0/}($$1)
-{
-    $this->$1 = $$1;
-    
-    return $this;
+snippet pri "Private method."
+private function (${arguments}) {
+    ${2}
 }
 endsnippet
 
-snippet met "Public method definition"
-public function ${1:methodName}($2)
-{
-	$3 
+snippet pris "Private static method."
+private function (${arguments}) {
+    ${2}
 }
 endsnippet
 
-snippet e "Echo some text"
-	echo "${1:Lorem ipsum dolor sit amet...}";
+snippet pro "Protected method."
+protected function (${arguments}) {
+    ${2}
+}
 endsnippet
 
-snippet cl "Class"
+snippet pros "Protected static method."
+protected static function (${arguments}) {
+    ${2}
+}
+endsnippet
+
+# ---
+# OOP
+# ---
+
+snippet cl "Make a new class."
 class ${1:ClassName} 
 {
-	public function __construct(${2:params})
-	{
-		${3}
-	}
+    ${2}
 }
 endsnippet
 
-snippet in "Interface"
-interface ${1:InterfaceName} 
+snippet in "Make a new interface."
+interface ${1:InterfaceName}
 {
-	public function methodName(${2:params});
+
+}
+endsnippet
+
+snippet acl "Make a new abstract class."
+abstract class ${1:ClassName}
+{
+    ${2}
+}
+endsnippet
+
+snippet ctor "Constructor."
+public function __construct(${1:artuments})
+{
+    ${2}
 }
 endsnippet
