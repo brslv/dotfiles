@@ -101,6 +101,14 @@
         set smartcase
     " }}}
 
+    " Omni-completion {{{
+        " If you prefer the Omni-Completion tip window to close when a selection is
+        " made, these lines close it on movement in insert mode or when leaving
+        " insert mode
+        autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+        autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+    " }}}
+
 " }}}
 
 " *** Mappings *** {{{
@@ -135,6 +143,7 @@
     " After a search, remove the highlighting.
     nmap <Leader><space> :nohlsearch<cr>
 
+    nmap <Leader>bq :bp <BAR> bd #<cr>
 
     " Moving {{{
         " Go four lines down with Ctrl-j.
@@ -142,6 +151,12 @@
 
         " Go four lines up with Ctrl-k.
         nnoremap <c-k> 4k
+
+        " Go to the beginning of the line (H).
+        nnoremap <S-h> ^
+
+        " Go to the end of the line (L).
+        nnoremap <S-l> $
     " }}}
 
     " Split management {{{
@@ -221,6 +236,12 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
 
         " Colorschemes collection.
         Plugin 'flazz/vim-colorschemes'
+
+        " UltiSnips
+        Plugin 'SirVer/ultisnips'
+
+        " Neocomplete
+        Plugin 'Shougo/neocomplete'
     " }}}
     
     " Disabled for now {{{
@@ -247,6 +268,26 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
     
     " Tagbar {{{
         nmap <Leader>2 :TagbarToggle<CR>
+    " }}}
+
+    " Ultisnips {{{
+        " Expand on tab
+        " Ctrl-Space
+        let g:UltiSnipsExpandTrigger="<c-@>"
+        " Move to the next placeholder on tab
+        let g:UltiSnipsJumpForwardTrigger="<c-@>"
+        " Move to the prev placeholder on Shift-tab
+        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    " }}}
+
+    " Neocomplete {{{
+        " Set minimum syntax keyword length.
+        let g:neocomplete#enable_at_startup = 1
+        let g:neocomplete#sources#syntax#min_keyword_length = 3
+        let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+        " TAB completion
+        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
     " }}}
 
 " }}}
