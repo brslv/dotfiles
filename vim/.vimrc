@@ -120,7 +120,7 @@
     nnoremap Q <nop>
 
     " source .vimrc file.
-    :nnoremap <leader>sv :source $MYVIMRC<cr>
+    nnoremap <leader>sv :source $MYVIMRC<cr>
 
     " Open the .vimrc file.
     nmap <Leader>ev :tabnew $MYVIMRC<cr>
@@ -181,6 +181,13 @@
 
         " Go to the prev tab
         nmap <C-H> :tabp<cr>					            
+    " }}}
+
+    " Copy-pasting to clipboard {{{
+        " Paste
+        nnoremap <C-v> "+p
+        " Copy
+        nnoremap <C-c> "+y
     " }}}
 
 " }}}
@@ -288,6 +295,10 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
 
         " TAB completion
         inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " }}}
+    
+    " CtrlP {{{
+        nmap <c-e> :CtrlPMRUFiles<cr>
     " }}}
 
 " }}}
