@@ -48,11 +48,35 @@
     " Show matching brackets.
     set showmatch
 
-    " Autofold.
-    set foldenable
-
     " Powerline fonts settings
     let g:airline_powerline_fonts = 1
+
+    " Language mappings
+    set langmap=чявертъуиопшщасдфгхйклзьцжбнмЧЯВЕРТЪУИОПШЩАСДФГХЙКЛЗѝЦЖБНМ;`qwertyuiop[]asdfghjklzxcvbnm~QWERTYUIOP{}ASDFGHJKLZXCVBNM
+
+    " Scroll with mouse
+    set mouse=a
+
+    " UI helper for status autocompletion
+    set wildmenu
+
+    " Scroll size
+    let scroll = 10
+
+    " Folds {{{
+        " Autofold.
+        set foldenable
+
+        " Open most folds by default
+        set foldlevelstart=10
+        set foldnestmax=10
+
+        " space open/closes folds
+        nnoremap <space> za
+
+        " Fold, based on indent level
+        set foldmethod=indent
+    " }}}
 
     " Colors {{{
         " Enforce <t_CO> colors for terminal vim.
@@ -63,9 +87,10 @@
 
         " Set the colorscheme
         " colorscheme gotham256
+        colorscheme desertEx
         " colorscheme CandyPaper
         " colorscheme OceanicNext   " Nice
-        colorscheme antares         " Uber nice
+        " colorscheme antares         " Uber nice
     " }}}
 
     " Indentation {{{
@@ -105,8 +130,150 @@
         " If you prefer the Omni-Completion tip window to close when a selection is
         " made, these lines close it on movement in insert mode or when leaving
         " insert mode
+        " set omnifunc=syntaxcomplete#Complete
         autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
         autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+    " }}}
+
+" }}}
+
+" *** Plugins *** {{{
+
+set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and initialize
+
+    call vundle#begin()
+
+    " Active {{{
+        " Vundle.
+        Plugin 'VundleVim/Vundle.vim'
+
+        " NERDTree.
+        Plugin 'scrooloose/nerdtree'
+
+        " Ctrl-p.
+        Plugin 'kien/ctrlp.vim'
+
+        " Vim-airline themes.
+        Plugin 'vim-airline/vim-airline-themes'
+
+        " Ag searching.
+        Plugin 'rking/ag.vim'
+
+        " Updated PHP syntax.
+        Plugin 'StanAngeloff/php.vim'
+
+        " Vim-surround.
+        Plugin 'tpope/vim-surround'
+
+        " TComment.
+        Plugin 'tomtom/tcomment_vim'
+
+        " Syntastic.
+        Plugin 'scrooloose/syntastic'
+
+        " Gitgutter.
+        Plugin 'airblade/vim-gitgutter'
+
+        " Tagbar.
+        Plugin 'majutsushi/tagbar'
+
+        " Fot better js.
+        Plugin 'pangloss/vim-javascript'
+        Plugin 'nathanaelkane/vim-indent-guides'
+
+        " Colorschemes collection.
+        Plugin 'flazz/vim-colorschemes'
+
+        " UltiSnips
+        Plugin 'SirVer/ultisnips'
+
+        " Neocomplete
+        Plugin 'Shougo/neocomplete'
+
+        " Auto-pairs
+        " Plugin 'jiangmiao/auto-pairs'
+
+        " Autoclose html tags
+        Plugin 'alvan/vim-closetag'
+
+        " Some handy vim snippets
+        Plugin 'honza/vim-snippets'
+    " }}}
+    
+    " Disabled for now {{{
+        " Plugin 'SirVer/ultisnips'                       " UltiSnips
+        " Plugin 'arnaud-lb/vim-php-namespace'            " PHP namespaces usings
+        " Plugin 'tommcdo/vim-exchange'                   " Vim-exchange for words swapping
+        " Plugin 'Shougo/neocomplete'                     " Neocomplete
+        " Plugin 'easymotion/vim-easymotion'              " Easy motion
+        " Plugin 'morhetz/gruvbox'                        " Gruvbox colorscheme
+    " }}}
+
+    call vundle#end()            			" required
+
+" }}}
+
+" *** Plugins settings & mappings *** {{{
+
+    " Nerdtree {{{
+        " Automatically open NERDTree and focus on the editor
+        autocmd VimEnter * NERDTree
+        autocmd VimEnter * wincmd p
+
+        " NERDTress File highlighting
+        function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+            exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+            exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+        endfunction
+
+        call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+        call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+        call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+        call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+        call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+        call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+        call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
+        " Open/Close the NERDTree.
+        nmap <Leader>1 :NERDTreeToggle<cr>
+    "}}}
+    
+    " Tagbar {{{
+        nmap <Leader>2 :TagbarToggle<CR>
+    " }}}
+
+    " Ultisnips {{{
+        " Expand on tab
+        " Ctrl-Space
+        let g:UltiSnipsExpandTrigger="<c-@>"
+        " Move to the next placeholder on tab
+        let g:UltiSnipsJumpForwardTrigger="<c-@>"
+        " Move to the prev placeholder on Shift-tab
+        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    " }}}
+
+    " Neocomplete {{{
+        " Set minimum syntax keyword length.
+        let g:neocomplete#enable_at_startup = 1
+        let g:neocomplete#sources#syntax#min_keyword_length = 3
+        let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+        " TAB completion
+        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " }}}
+    
+    " CtrlP {{{
+        nmap <c-e> :CtrlPMRUFiles<cr>
+    " }}}
+
+    " Vim closetag {{{
+        let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb,*.erb"
     " }}}
 
 " }}}
@@ -185,9 +352,14 @@
 
     " Copy-pasting to clipboard {{{
         " Paste
-        nnoremap <C-v> "+p
+        nnoremap <Leader><C-v> "+p
         " Copy
-        nnoremap <C-c> "+y
+        nnoremap <Leader><C-c> "+y
+    " }}}
+
+    " Searching with Ag {{{
+        " Perform a new Ag search in a new tab.
+        nmap <Leader>a :tab split<CR>:Ag ""<left>
     " }}}
 
 " }}}
@@ -198,107 +370,3 @@
 
 " }}}
 
-" *** Plugins *** {{{
-
-set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and initialize
-
-    call vundle#begin()
-
-    " Active {{{
-        " Vundle.
-        Plugin 'VundleVim/Vundle.vim'
-
-        " NERDTree.
-        Plugin 'scrooloose/nerdtree'
-
-        " Ctrl-p.
-        Plugin 'kien/ctrlp.vim'
-
-        " Vim-airline themes.
-        Plugin 'vim-airline/vim-airline-themes'
-
-        " Ag searching.
-        Plugin 'rking/ag.vim'
-
-        " Updated PHP syntax.
-        Plugin 'StanAngeloff/php.vim'
-
-        " Vim-surround.
-        Plugin 'tpope/vim-surround'
-
-        " TComment.
-        Plugin 'tomtom/tcomment_vim'
-
-        " Syntastic.
-        Plugin 'scrooloose/syntastic'
-
-        " Gitgutter.
-        Plugin 'airblade/vim-gitgutter'
-
-        " Tagbar.
-        Plugin 'majutsushi/tagbar'
-
-        " Fot better js.
-        Plugin 'pangloss/vim-javascript'
-
-        " Colorschemes collection.
-        Plugin 'flazz/vim-colorschemes'
-
-        " UltiSnips
-        Plugin 'SirVer/ultisnips'
-
-        " Neocomplete
-        Plugin 'Shougo/neocomplete'
-    " }}}
-    
-    " Disabled for now {{{
-        " Plugin 'jiangmiao/auto-pairs'
-        " Plugin 'SirVer/ultisnips'                       " UltiSnips
-        " Plugin 'arnaud-lb/vim-php-namespace'            " PHP namespaces usings
-        " Plugin 'honza/vim-snippets'                     " Some handy snippets
-        " Plugin 'tommcdo/vim-exchange'                   " Vim-exchange for words swapping
-        " Plugin 'Shougo/neocomplete'                     " Neocomplete
-        " Plugin 'easymotion/vim-easymotion'              " Easy motion
-        " Plugin 'morhetz/gruvbox'                        " Gruvbox colorscheme
-    " }}}
-
-    call vundle#end()            			" required
-
-" }}}
-
-" *** Plugins settings & mappings *** {{{
-
-    " Nerdtree {{{
-        " Open/Close the NERDTree.
-        nmap <Leader>1 :NERDTreeToggle<cr>
-    "}}}
-    
-    " Tagbar {{{
-        nmap <Leader>2 :TagbarToggle<CR>
-    " }}}
-
-    " Ultisnips {{{
-        " Expand on tab
-        " Ctrl-Space
-        let g:UltiSnipsExpandTrigger="<c-@>"
-        " Move to the next placeholder on tab
-        let g:UltiSnipsJumpForwardTrigger="<c-@>"
-        " Move to the prev placeholder on Shift-tab
-        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-    " }}}
-
-    " Neocomplete {{{
-        " Set minimum syntax keyword length.
-        let g:neocomplete#enable_at_startup = 1
-        let g:neocomplete#sources#syntax#min_keyword_length = 3
-        let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-        " TAB completion
-        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-    " }}}
-    
-    " CtrlP {{{
-        nmap <c-e> :CtrlPMRUFiles<cr>
-    " }}}
-
-" }}}
