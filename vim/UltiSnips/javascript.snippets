@@ -1,0 +1,55 @@
+snippet func "function (fun)" w
+function ${1:funcName}(${2:argument}) {
+    ${VISUAL}$0
+}
+endsnippet
+
+snippet vfunc "Function assigned to var"
+${1:var }${2:funcName} = function $2($3) {
+    ${VISUAL}$0
+};
+endsnippet
+
+snippet afunc "Anonymous Function" i
+function(${1:e}) {
+    ${VISUAL}$0
+}
+endsnippet
+
+snippet iife "Immediately-Invoked Function Expression (iife)"
+(function(${1:window}) {
+     ${VISUAL}$0
+}(${2:$1}));
+endsnippet
+
+snippet proto "Prototype"
+$1.prototype.$2 = function ${3:$2}(${4}) {
+    ${5}
+};
+endsnippet
+
+snippet ctor
+function ${1:ClassName}(${2:funcArgs}) {
+    ${3}
+}
+endsnippet
+
+snippet protoclass "Scaffold a prototype class"
+var ${1:ClassName} = (function (${6:$5}) {
+
+    function ${2:$1}(${3:params}) {
+	`\t`this.${4:$3} = ${4:$3};
+    }
+
+    return $1;
+
+}(${5:input}));
+endsnippet
+
+snippet cl "console.log"
+console.log($1);
+endsnippet
+
+snippet cle "console.log with error"
+console.log($1); ___intentionalError___;
+endsnippet
