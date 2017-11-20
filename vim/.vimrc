@@ -1,8 +1,8 @@
-" *** Information *** {{{
+" information *** {{{
 
     " ===================================
     " Author: 	        Borislav Grigorov
-    " Last Change: 	23.01.17
+    " Last Change: 	20.11.2017
     " ===================================
     
 " }}}
@@ -18,8 +18,10 @@
 
     " = Stuff, that should be tidied up later. 
     " = Used for settings i'm currently trying out
+    " set statusline=%l/%L
 
 " }}}
+
 
 " *** General *** {{{
 
@@ -41,6 +43,9 @@
 
     " Always show the status bar on the bottom.
     set laststatus=2
+    
+    " Set the status bar format
+    set statusline=[%t]%m%=%l/%L
 
     " Underline the current line.
     set cursorline
@@ -51,14 +56,12 @@
     " Powerline fonts settings
     let g:airline_powerline_fonts = 1
 
-    " Language mappings
-    set langmap=чявертъуиопшщасдфгхйклзьцжбнмЧЯВЕРТЪУИОПШЩАСДФГХЙКЛЗѝЦЖБНМ;`qwertyuiop[]asdfghjklzxcvbnm~QWERTYUIOP{}ASDFGHJKLZXCVBNM
-
     " Scroll with mouse
     set mouse=a
 
     " UI helper for status autocompletion
     set wildmenu
+    set wildmode=longest:full,full
 
     " Scroll size
     let scroll = 10
@@ -80,17 +83,27 @@
 
     " Colors {{{
         " Enforce <t_CO> colors for terminal vim.
-        set t_CO=256
+        set t_Co=256
 
         " Switch syntax highlighting on
         syntax on
 
+        " Set the background color to dark
+        set background=dark
+
         " Set the colorscheme
-        " colorscheme gotham256
-        colorscheme desertEx
+        " colorscheme molokai
+        " colorscheme desertEx
         " colorscheme CandyPaper
-        " colorscheme OceanicNext   " Nice
-        " colorscheme antares         " Uber nice
+        " colorscheme OceanicNext
+        " colorscheme antares
+        " colorscheme bubblegum-256-dark
+        " colorscheme zenburn
+        " colorscheme tender
+        " colorscheme PaperColor
+        " colorscheme wombat256i
+        " colorscheme lucid
+        colorscheme pixelmuerto
     " }}}
 
     " Indentation {{{
@@ -139,7 +152,7 @@
 
 " *** Plugins *** {{{
 
-set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
 
     call vundle#begin()
 
@@ -155,12 +168,6 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
 
         " Vim-airline themes.
         Plugin 'vim-airline/vim-airline-themes'
-
-        " Ag searching.
-        Plugin 'rking/ag.vim'
-
-        " Updated PHP syntax.
-        Plugin 'StanAngeloff/php.vim'
 
         " Vim-surround.
         Plugin 'tpope/vim-surround'
@@ -190,14 +197,29 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
         " Neocomplete
         Plugin 'Shougo/neocomplete'
 
-        " Auto-pairs
-        " Plugin 'jiangmiao/auto-pairs'
-
         " Autoclose html tags
         Plugin 'alvan/vim-closetag'
 
         " Some handy vim snippets
         Plugin 'honza/vim-snippets'
+
+        " JSX syntax and indentation
+        Plugin 'maxmellon/vim-jsx-pretty'
+
+        " Goyo - distraction free
+        Plugin 'junegunn/goyo.vim'
+
+        " Limelight
+        Plugin 'junegunn/limelight.vim'
+
+        " Ack
+        Plugin 'mileszs/ack.vim'
+
+        " Vim-stylus
+        Plugin 'wavded/vim-stylus.git'
+
+        " space-vim-dark colorscheme
+        Plugin 'liuchengxu/space-vim-dark'
     " }}}
     
     " Disabled for now {{{
@@ -215,10 +237,15 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
 
 " *** Plugins settings & mappings *** {{{
 
+    " Limelight {{{
+        autocmd! User GoyoEnter Limelight
+        autocmd! User GoyoLeave Limelight!
+    " }}}
+
     " Nerdtree {{{
         " Automatically open NERDTree and focus on the editor
-        autocmd VimEnter * NERDTree
-        autocmd VimEnter * wincmd p
+        " autocmd VimEnter * NERDTree
+        " autocmd VimEnter * wincmd p
 
         " NERDTress File highlighting
         function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -242,6 +269,7 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
 
         " Open/Close the NERDTree.
         nmap <Leader>1 :NERDTreeToggle<cr>
+        let g:NERDTreeMouseMode = 3
     "}}}
     
     " Tagbar {{{
@@ -270,6 +298,7 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
     
     " CtrlP {{{
         nmap <c-e> :CtrlPMRUFiles<cr>
+        let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
     " }}}
 
     " Vim closetag {{{
@@ -291,6 +320,9 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
 
     " Open the .vimrc file.
     nmap <Leader>ev :tabnew $MYVIMRC<cr>
+    
+    " Open the notes file.
+    nmap <Leader>n :tabnew ~/notes.txt<cr>
 
     " Quit.
     nmap <Leader>q :q<cr>
@@ -310,8 +342,6 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
     " After a search, remove the highlighting.
     nmap <Leader><space> :nohlsearch<cr>
 
-    nmap <Leader>bq :bp <BAR> bd #<cr>
-
     " Moving {{{
         " Go four lines down with Ctrl-j.
         nnoremap <c-j> 4j
@@ -324,20 +354,6 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
 
         " Go to the end of the line (L).
         nnoremap <S-l> $
-    " }}}
-
-    " Split management {{{
-        " Go to the split below (Ctrl-Shift-j).
-        nmap sjj <C-W><C-J><cr>					            
-
-        " Go to the split above (Ctrl-Shift-k).
-        nmap skk <C-W><C-K><cr>					            
-
-        " Go to the split on the left (Ctrl-Shift-h).
-        nmap shh <C-W><C-H><cr>					            
-
-        " Go to the split on the right (Ctrl-Shift-l).
-        nmap sll <C-W><C-L><cr>					            
     " }}}
 
     " Tabs management {{{
@@ -359,14 +375,15 @@ set rtp+=~/.vim/bundle/Vundle.vim 		" set the runtime path to include Vundle and
 
     " Searching with Ag {{{
         " Perform a new Ag search in a new tab.
-        nmap <Leader>a :tab split<CR>:Ag ""<left>
+        nmap <Leader>a :tab split<CR>:Ag -Q ""<left>
     " }}}
 
 " }}}
 
 " *** Autocmds *** {{{
 
-    au FileType ruby setlocal sw=2 sts=2
+    " Source the .vimrc file on change
+    autocmd! BufWritePost .vimrc source %
 
 " }}}
 
