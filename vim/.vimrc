@@ -147,6 +147,14 @@
         autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
         autocmd InsertLeave * if pumvisible() == 0|pclose|endif
     " }}}
+    
+    " Autocompletion {{{
+		" Set autocompletion to longest and display it,
+		" even if the options are just a single one
+		set completeopt=longest,menuone
+		" Enter key will simply select the highlighted menu item
+		inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+	" }}}
 
 " }}}
 
@@ -220,6 +228,9 @@
 
         " space-vim-dark colorscheme
         Plugin 'liuchengxu/space-vim-dark'
+        
+        " AutoComplPop
+        Plugin 'vim-scripts/AutoComplPop'
     " }}}
     
     " Disabled for now {{{
