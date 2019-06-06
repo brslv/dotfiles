@@ -22,6 +22,7 @@ Plug 'xuyuanp/nerdtree-git-plugin',
 Plug 'davidklsn/vim-sialoquent',
 Plug 'pangloss/vim-javascript',
 Plug 'jparise/vim-graphql',
+Plug 'dart-lang/dart-vim-plugin'
 call plug#end()
 
 " ----------------------------------------------------------------------------
@@ -48,6 +49,9 @@ set noswapfile
 set mouse=a
 set wildmenu
 set wildignore+=*/node_modules/*
+set undofile
+set undodir=~/.vimundo/
+set laststatus=2
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
@@ -58,9 +62,9 @@ filetype plugin indent on
 
 " colors
 set termguicolors
-set background=light
+set background=dark
 set t_Co=256
-colorscheme bionik
+" colorscheme bionik
 " colorscheme hybrid
 " colorscheme PaperColor
 " colorscheme CandyPaper
@@ -70,7 +74,9 @@ colorscheme bionik
 " colorscheme made_of_code
 " colorscheme wasabi256
 " colorscheme wombat256
-" colorscheme wombat
+colorscheme wombat
+" colorscheme solarized
+" colorscheme moria
 
 " indentation
 set tabstop=2
@@ -144,3 +150,11 @@ let g:NERDTreeMouseMode=3
 
 let g:lt_location_list_toggle_map = '<F3>'
 let g:lt_quickfix_list_toggle_map = '<F4>'
+
+" ----------------------------------------------------------------------------
+" --- FUNCTIONS
+" ----------------------------------------------------------------------------
+
+" ----------------------------------------------------------------------------
+" -- EXPERIMENTS
+" ----------------------------------------------------------------------------
