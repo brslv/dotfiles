@@ -5,13 +5,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'flazz/vim-colorschemes'
 Plug 'kien/ctrlp.vim'
-Plug 'prabirshrestha/asyncomplete.vim',
+" Plug 'prabirshrestha/asyncomplete.vim',
 
 Plug 'tjammer/blayu.vim',
 Plug 'ayu-theme/ayu-vim',
+Plug 'dracula/vim', { 'as': 'dracula' },
 Plug 'tpope/vim-fugitive',
 Plug 'leafgarland/typescript-vim',
-Plug 'vim-scripts/AutoComplPop',
+" Plug 'vim-scripts/AutoComplPop',
 Plug 'dyng/ctrlsf.vim',
 Plug 'neoclide/vim-jsx-improve',
 " Plug 'jiangmiao/auto-pairs',
@@ -22,23 +23,72 @@ Plug 'xuyuanp/nerdtree-git-plugin',
 Plug 'davidklsn/vim-sialoquent',
 Plug 'pangloss/vim-javascript',
 Plug 'jparise/vim-graphql',
-Plug 'dart-lang/dart-vim-plugin'
+Plug 'dart-lang/dart-vim-plugin',
+Plug 'Shougo/neosnippet',
+Plug 'Shougo/neosnippet-snippets',
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim',
+  Plug 'roxma/nvim-yarp',
+  Plug 'roxma/vim-hug-neovim-rpc',
+endif
+Plug 'w0rp/ale',
+Plug 'dart-lang/dart-vim-plugin',
+Plug 'altercation/vim-colors-solarized'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 " ----------------------------------------------------------------------------
 " -- PLUGINS
 " ----------------------------------------------------------------------------
+let g:vim_jsx_pretty_colorful_config = 1
+
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+let g:NERDTreeMouseMode=3
+
+let g:lt_location_list_toggle_map = '<F3>'
+let g:lt_quickfix_list_toggle_map = '<F4>'
+
+" Ale
+let g:ale_linters = {
+      \  'javascript': ['flow', 'eslint'],
+      \  'dart': []
+      \}
+let g:ale_fixers = {
+      \ 'javascript': ['prettier', 'eslint']
+      \ }
+highlight clear ALEErrorSign " otherwise uses error bg color (typically red)
+highlight clear ALEWarningSign " otherwise uses error bg color (typically red)
+let g:ale_sign_error = 'X' " could use emoji
+let g:ale_sign_warning = '?' " could use emoji
+let g:ale_statusline_format = ['X %d', '? %d', '']
+" %linter% is the name of the linter that provided the message
+" %s is the error or warning message
+let g:ale_echo_msg_format = '%linter% says %s'
+" Map keys to navigate between lines with errors and warnings.
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Neosnippet
+let g:neosnippet#enable_completed_snippet = 1
 
 " ----------------------------------------------------------------------------
 " -- SETTINGS
 " ----------------------------------------------------------------------------
 " set autochdir
+set ttimeoutlen=100
 set incsearch
 set nocompatible
 set backspace=indent,eol,start
 set history=50
+set foldmethod=indent
+set foldlevel=20
 set showcmd
 set number
 set relativenumber
@@ -51,6 +101,7 @@ set wildmenu
 set wildignore+=*/node_modules/*
 set undofile
 set undodir=~/.vimundo/
+set completeopt=longest,menuone
 set laststatus=2
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -61,9 +112,13 @@ endif
 filetype plugin indent on
 
 " colors
+set t_Co=256 
 set termguicolors
 set background=dark
-set t_Co=256
+" colorscheme dracula
+colorscheme getafe
+" colorscheme fx
+" colorscheme flatlandia
 " colorscheme bionik
 " colorscheme hybrid
 " colorscheme PaperColor
@@ -74,7 +129,7 @@ set t_Co=256
 " colorscheme made_of_code
 " colorscheme wasabi256
 " colorscheme wombat256
-colorscheme wombat
+" colorscheme wombat
 " colorscheme solarized
 " colorscheme moria
 
@@ -93,6 +148,7 @@ let mapleader = ","
 inoremap kj <Esc>
 nnoremap <leader>e :e $MYVIMRC<cr>
 nnoremap <F2> :NERDTreeToggle<cr>
+nnoremap <F5> za
 nnoremap <c-e> :CtrlPMRU<cr>
 nnoremap <leader><space> :nohlsearch<cr>
 nmap <c-s> :w<CR>
@@ -104,13 +160,11 @@ vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
 nmap <c-f> <Plug>CtrlSFPrompt
 nmap <c-f>n <Plug>CtrlSFCwordPath
-imap <leader>w <esc>:w<CR>li
 nmap <leader>w :w<CR>
-imap <leader>q <esc>:q<CR>
 nmap <leader>q :q<CR>
 inoremap <c-l> <esc><s-a>
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <Leader>f :echo expand('%:p')<CR>
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " asynccomplete
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -118,8 +172,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 " completions
-
-set completeopt=longest,menuone
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
@@ -139,17 +191,21 @@ command! Q q
 " ----------------------------------------------------------------------------
 " -- AUTOCMDS
 " ----------------------------------------------------------------------------
-augroup BufWritePost
-	autocmd! bufwritepost .vimrc source % | echom "Reloaded .vimrc" | redraw
+augroup write_post
+	autocmd!
+  autocmd bufwritepost .vimrc source % | echom "Reloaded .vimrc" | redraw
 augroup END
 
-" ----------------------------------------------------------------------------
-" --- PLUGINS
-" ----------------------------------------------------------------------------
-let g:NERDTreeMouseMode=3
+augroup write_pre
+  autocmd!
+  autocmd bufwritepre * :ALEFix
+augroup END
 
-let g:lt_location_list_toggle_map = '<F3>'
-let g:lt_quickfix_list_toggle_map = '<F4>'
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
 
 " ----------------------------------------------------------------------------
 " --- FUNCTIONS
@@ -158,3 +214,11 @@ let g:lt_quickfix_list_toggle_map = '<F4>'
 " ----------------------------------------------------------------------------
 " -- EXPERIMENTS
 " ----------------------------------------------------------------------------
+" map - dd
+" map _ ddk
+" imap <c-d> <esc>ddi
+
+" Uppercase the word under cursor in normal mode
+nnoremap <leader><c-u> viwU
+
+vnoremap <leader>' <esc>`<i'<esc>`>a'
